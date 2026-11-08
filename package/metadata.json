@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [{ "Name": "Tuomas" }],
+        "Category": "System Information",
+        "Description": "Network speed meter for the panel with a configurable history graph and daily/monthly usage totals",
+        "Icon": "network-transmit-receive",
+        "Id": "io.github.tiaxi.netmeter",
+        "License": "GPL-2.0-or-later",
+        "Name": "Net Meter",
+        "Version": "1.0",
+        "Website": "https://github.com/Tiaxi/plasma-netmeter"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

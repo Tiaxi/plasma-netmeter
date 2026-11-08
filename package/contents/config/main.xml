@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <entry name="interfaceName" type="String"><default>all</default></entry>
+    <entry name="sampleInterval" type="Int"><default>1000</default></entry>
+    <entry name="useBits" type="Bool"><default>false</default></entry>
+    <entry name="binaryPrefixes" type="Bool"><default>false</default></entry>
+    <entry name="downloadColor" type="String"><default>#3daee9</default></entry>
+    <entry name="uploadColor" type="String"><default>#e9783d</default></entry>
+  </group>
+
+  <group name="Panel">
+    <entry name="panelShowArrows" type="Bool"><default>true</default></entry>
+    <entry name="panelColoredText" type="Bool"><default>false</default></entry>
+    <entry name="panelShowUnit" type="Bool"><default>true</default></entry>
+    <!-- -1 = automatic (3 significant digits), otherwise a fixed number of decimals -->
+    <entry name="panelDecimals" type="Int"><default>1</default></entry>
+    <entry name="panelUnitSpace" type="Bool"><default>true</default></entry>
+    <!-- 0 = filled triangles, 1 = thin arrows -->
+    <entry name="panelArrowStyle" type="Int"><default>0</default></entry>
+    <entry name="panelBold" type="Bool"><default>false</default></entry>
+    <entry name="panelFontScale" type="Int"><default>100</default></entry>
+    <!-- 0 = none, 1 = below the numbers, 2 = behind the numbers -->
+    <entry name="panelGraph" type="Int"><default>2</default></entry>
+    <entry name="panelGraphSeconds" type="Int"><default>60</default></entry>
+    <entry name="panelGraphHeight" type="Int"><default>16</default></entry>
+    <entry name="panelGraphOpacity" type="Int"><default>45</default></entry>
+    <!-- hover tooltip contents -->
+    <entry name="tooltipShowTitle" type="Bool"><default>true</default></entry>
+    <entry name="tooltipShowSpeed" type="Bool"><default>true</default></entry>
+    <entry name="tooltipShowPeakAverage" type="Bool"><default>false</default></entry>
+    <entry name="tooltipShowToday" type="Bool"><default>true</default></entry>
+    <entry name="tooltipShowMonth" type="Bool"><default>false</default></entry>
+  </group>
+
+  <group name="Graph">
+    <entry name="historyMinutes" type="Int"><default>5</default></entry>
+    <!-- 0 = overlay, 1 = split panes, 2 = mirrored -->
+    <entry name="graphMode" type="Int"><default>0</default></entry>
+    <!-- 0 = line, 1 = filled area, 2 = bars -->
+    <entry name="graphStyle" type="Int"><default>1</default></entry>
+    <entry name="lineWidth" type="Int"><default>2</default></entry>
+    <entry name="fillOpacity" type="Int"><default>30</default></entry>
+    <!-- 0 = automatic, 1 = fixed -->
+    <entry name="scaleMode" type="Int"><default>0</default></entry>
+    <entry name="fixedScale" type="Int"><default>100</default></entry>
+    <!-- index into: kB/s, MB/s, Mbit/s, Gbit/s -->
+    <entry name="fixedScaleUnit" type="Int"><default>2</default></entry>
+    <entry name="logScale" type="Bool"><default>false</default></entry>
+    <entry name="independentScales" type="Bool"><default>true</default></entry>
+    <entry name="showGrid" type="Bool"><default>true</default></entry>
+    <entry name="gridLines" type="Int"><default>4</default></entry>
+    <entry name="showTimeGrid" type="Bool"><default>true</default></entry>
+    <entry name="showAxisLabels" type="Bool"><default>true</default></entry>
+    <entry name="customBackground" type="Bool"><default>false</default></entry>
+    <entry name="backgroundColor" type="String"><default>#14161a</default></entry>
+    <entry name="backgroundOpacity" type="Int"><default>100</default></entry>
+    <entry name="showStats" type="Bool"><default>true</default></entry>
+    <entry name="showToolbar" type="Bool"><default>true</default></entry>
+    <!-- 0 = big readouts above the graph, 1 = boxed readouts below the graph -->
+    <entry name="readoutPosition" type="Int"><default>0</default></entry>
+    <!-- 0 = labels on grid lines, 1 = rotated scale label in a strip on the left -->
+    <entry name="axisLabelStyle" type="Int"><default>0</default></entry>
+    <entry name="dottedTimeGrid" type="Bool"><default>false</default></entry>
+    <entry name="customGridColor" type="Bool"><default>false</default></entry>
+    <entry name="gridColor" type="String"><default>#ffffff</default></entry>
+    <entry name="graphBorder" type="Bool"><default>false</default></entry>
+  </group>
+  <group name="Usage">
+    <!-- Traffic totals in bytes: {"days":{"yyyy-MM-dd":[down,up]},"months":{"yyyy-MM":[down,up]}} -->
+    <entry name="usageData" type="String"><default>{}</default></entry>
+    <!-- "interface totalDown totalUp": last seen kernel counters, to also count
+         traffic while Plasma wasn't running (same boot) -->
+    <entry name="usageBaseline" type="String"><default></default></entry>
+  </group>
+
+  <group name="Style">
+    <!-- Name of the active style preset; tweaks are remembered per style in savedStyles (JSON). -->
+    <entry name="activeStyle" type="String"><default>plasma</default></entry>
+    <entry name="savedStyles" type="String"><default>{}</default></entry>
+  </group>
+
+</kcfg>
