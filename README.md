@@ -38,6 +38,17 @@ kpackagetool6 -t Plasma/Applet -u plasma-netmeter/package
 systemctl --user restart plasma-plasmashell
 ```
 
+## Development
+
+`tools/check.sh` runs the same checks as CI: it validates `metadata.json` and
+`config/main.xml`, checks that every config key used in the QML is declared,
+lints the QML, runs the `Format.js` tests in `tests/` and test-installs the
+package into a throwaway home directory. On Fedora it needs
+`qt6-qtdeclarative-devel`, `jq` and `libxml2` besides Plasma itself.
+
+Pushing a `v<version>` tag that matches `Version` in `package/metadata.json`
+publishes a GitHub release with a `.plasmoid` file attached.
+
 ## Notes
 
 - Speeds and totals come from Plasma's system monitor service (`ksystemstats`),

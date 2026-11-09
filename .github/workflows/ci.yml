@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    # Ubuntu doesn't ship Plasma 6, and qmllint needs the real QML modules to
+    # resolve imports. Fedora tracks current Plasma, so test against that.
+    container: fedora:latest
+    steps:
+      - name: Install Qt, Plasma and tools
+        run: >
+          dnf install -y --setopt=install_weak_deps=False
+          qt6-qtdeclarative-devel qt6-qtbase-gui
+          libplasma plasma5support libksysguard
+          kf6-kirigami kf6-kcmutils kf6-kdeclarative kf6-kconfig kf6-kpackage
+          jq libxml2
+
+      - uses: actions/checkout@v7
+
+      - name: Validate metadata.json
+        run: bash tools/check.sh metadata
+
+      - name: Validate config schema and keys
+        run: bash tools/check.sh config
+
+      - name: Lint QML
+        run: bash tools/check.sh lint
+
+      - name: Test Format.js
+        run: bash tools/check.sh test
+
+      - name: Install with kpackagetool6
+        run: bash tools/check.sh install
