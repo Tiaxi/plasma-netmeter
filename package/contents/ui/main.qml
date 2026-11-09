@@ -1,8 +1,6 @@
 import QtQuick
-import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
-import org.kde.kirigami as Kirigami
 import org.kde.ksysguard.sensors as Sensors
 
 import "Format.js" as Fmt
