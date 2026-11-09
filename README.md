@@ -11,7 +11,8 @@ the classic DU Meter.
 - Compact download/upload readout sized to fit narrow vertical panels, with an
   optional mini graph behind or below the numbers
 - History graph of 1–60 minutes: overlay, split or mirrored layout; line,
-  area or bar style; automatic, fixed or logarithmic scale
+  area or bar style; automatic, fixed or logarithmic scale. Samples are kept
+  for the longest window, so widening it shows data already collected
 - Hover the graph for the exact speeds at any moment
 - Peak and average speeds, plus daily and monthly traffic totals that persist
   across restarts
