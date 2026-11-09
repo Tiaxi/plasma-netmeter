@@ -23,14 +23,15 @@ ColumnLayout {
     property var stats: ({ dlPeak: 0, ulPeak: 0, dlAvg: 0, ulAvg: 0 })
     function computeStats() {
         const dl = meter.history.dl, ul = meter.history.ul;
+        const start = Math.max(0, dl.length - meter.capacity);
         let dp = 0, up = 0, ds = 0, us = 0;
-        for (let i = 0; i < dl.length; i++) {
+        for (let i = start; i < dl.length; i++) {
             dp = Math.max(dp, dl[i]);
             up = Math.max(up, ul[i]);
             ds += dl[i];
             us += ul[i];
         }
-        const n = Math.max(1, dl.length);
+        const n = Math.max(1, dl.length - start);
         stats = { dlPeak: dp, ulPeak: up, dlAvg: ds / n, ulAvg: us / n };
     }
     Connections {

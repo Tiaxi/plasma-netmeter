@@ -18,6 +18,15 @@ PlasmoidItem {
     readonly property int interval: Math.max(250, cfg.sampleInterval)
     // Number of samples the history graph spans.
     readonly property int capacity: Math.max(2, Math.ceil(cfg.historyMinutes * 60000 / interval) + 1)
+    // Longest history length the settings allow. Samples are kept for this
+    // long regardless of the current selection, so widening the graph window
+    // shows data that was already collected.
+    readonly property int maxHistoryMinutes: 120
+    // Number of samples kept in memory: enough for the longest selectable
+    // window and for the panel graph, whichever is larger.
+    readonly property int retention: Math.max(capacity,
+                                              Math.ceil(maxHistoryMinutes * 60000 / interval) + 1,
+                                              Math.ceil(cfg.panelGraphSeconds * 1000 / interval) + 1)
     readonly property bool useBits: cfg.useBits
     readonly property bool binary: cfg.binaryPrefixes
     readonly property color downloadColor: cfg.downloadColor
@@ -38,7 +47,7 @@ PlasmoidItem {
         upload = u;
         history.dl.push(d);
         history.ul.push(u);
-        const excess = history.dl.length - capacity;
+        const excess = history.dl.length - retention;
         if (excess > 0) {
             history.dl.splice(0, excess);
             history.ul.splice(0, excess);
@@ -190,14 +199,15 @@ PlasmoidItem {
         if (cfg.tooltipShowPeakAverage) {
             revision; // recompute as samples arrive
             const dl = history.dl, ul = history.ul;
+            const start = Math.max(0, dl.length - capacity);
             let dp = 0, up = 0, ds = 0, us = 0;
-            for (let i = 0; i < dl.length; i++) {
+            for (let i = start; i < dl.length; i++) {
                 dp = Math.max(dp, dl[i]);
                 up = Math.max(up, ul[i]);
                 ds += dl[i];
                 us += ul[i];
             }
-            const n = Math.max(1, dl.length);
+            const n = Math.max(1, dl.length - start);
             lines.push(pair(i18n("Peak"), rate(dp), rate(up)), pair(i18n("Average"), rate(ds / n), rate(us / n)));
         }
         if (cfg.tooltipShowToday)
